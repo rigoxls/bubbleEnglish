@@ -2,10 +2,26 @@
    Rigo's custom styles
    ========================================================================== */
 
-.container .jumbotron{
+body
+{
+    background: #09192A;
+}
+
+.container .jumbotron
+{
     margin-top: 15px;
 }
 
+div.home-page
+{
+    width: 70%;
+    margin: 0 auto;
+}
+
+footer
+{
+    color: #ffffff;
+}
 
 
 
