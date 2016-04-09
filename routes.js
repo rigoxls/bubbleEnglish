@@ -14,12 +14,21 @@ var Routes = function(app){
         controllers['homeController'].response('home', req, res, next);
     });
 
+    //dashboard is our main controller
     app.expressServer.get('/dashboard', function(req, res, next){
+        //we need to be sure user is logged to see this pages that are managed with angularjs
+        //if not user, redirect
+        if(!req.user) res.redirect('/home');
         controllers['dashboardController'].response('home', req , res, next);
     });
 
     app.expressServer.get('/home', function(req, res, next){
         controllers['homeController'].response('home', req, res, next);
+    });
+
+    app.expressServer.get('/logout/', function(req, res, next){
+        req.logout();
+        res.redirect('/home');
     });
 
     //redirect the user to twitter for authentication. when complete, twitter
