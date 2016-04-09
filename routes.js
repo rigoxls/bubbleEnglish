@@ -15,7 +15,7 @@ var Routes = function(app){
     });
 
     app.expressServer.get('/login', function(req, res, next){
-        res.send('you are in login');
+        controllers['dashboardController'].response('home', req , res, next);
     });
 
     app.expressServer.get('/home', function(req, res, next){
