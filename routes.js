@@ -11,10 +11,10 @@ var Routes = function(app){
     };
 
     app.expressServer.get('/', function(req, res, next){
-        res.send('you are in / as logged');
+        controllers['homeController'].response('home', req, res, next);
     });
 
-    app.expressServer.get('/login', function(req, res, next){
+    app.expressServer.get('/dashboard', function(req, res, next){
         controllers['dashboardController'].response('home', req , res, next);
     });
 
@@ -31,8 +31,8 @@ var Routes = function(app){
     //authentication process by attempting to obtain an access token.
     //If access was granted, the user will be logged in . Otherwise, authentication has failed.
     app.expressServer.get('/auth/twitter/callback',
-        passport.authenticate('twitter', { successRedirect: conf.appUrl + 'login/#/',
-                                           failureRedirect: '/login' } ));
+        passport.authenticate('twitter', { successRedirect: conf.appUrl + 'dashboard/#/',
+                                           failureRedirect: '/dashboard' } ));
 
     // Redirect the user to Facebook for authentication.  When complete,
     // Facebook will redirect the user back to the application at
@@ -44,8 +44,8 @@ var Routes = function(app){
     // access was granted, the user will be logged in.  Otherwise,
     // authentication has failed.
     app.expressServer.get('/auth/facebook/callback',
-      passport.authenticate('facebook', { successRedirect: conf.appUrl + 'home/#/',
-                                          failureRedirect: '/login' }));
+      passport.authenticate('facebook', { successRedirect: conf.appUrl + 'dashboard/#/',
+                                          failureRedirect: '/dashboard' }));
 
     // Redirect the user to Google for authentication.  When complete, Google
     // will redirect the user back to the application at

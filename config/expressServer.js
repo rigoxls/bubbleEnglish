@@ -1,4 +1,5 @@
 var env = process.env.NODE_ENV || 'production',
+    conf = require('../config/conf'),
     express = require('express'),
     swig = require('swig'),
     bodyParser = require('body-parser'),
@@ -12,6 +13,7 @@ var ExpressServer = function(config){
     config = config || {};
 
     this.expressServer = express();
+    this.expressServer.locals.appUrl = conf.appUrl;
 
     this.expressServer.use(bodyParser.urlencoded({ extended: true}));
 
