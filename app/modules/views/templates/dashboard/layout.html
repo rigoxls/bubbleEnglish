@@ -1,59 +1,107 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-        <link rel="stylesheet" href="[[appUrl]]css/bootstrap.min.css">
-        <style>
-            body {
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-        </style>
-        <link rel="stylesheet" href="[[appUrl]]css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="[[appUrl]]css/main.css">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BubbleEnglish Dashboard</title>
+    <!-- Bootstrap Styles-->
+    <link href="[[appUrl]]css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="[[appUrl]]fonts/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="[[appUrl]]libs/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="[[appUrl]]css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
 
-        <script src="[[appUrl]]js/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"></a>
-           </div>
+                <a class="navbar-brand" href="index.html">BubbleEnglish</a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>&nbsp;&nbsp;&nbsp;
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a class="active-menu" href="index.html"><i class="fa fa-bars"></i> Glosary</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-file-o"></i> Add Book</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-book"></i> List of Books</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-font"></i> Search Meanings </a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-user"></i> Logout </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+
+                {% block content %} {% endblock %}
+
+            </div>
+            <!-- /. PAGE INNER  -->
         </div>
-    </nav>
-
-
-    <div class="container">
-
-        <!--here content -->
-        {% block content %} {% endblock %}
-        <hr>
-        <footer>
-            <p>&copy; GrammersHouse.com 2016</p>
-        </footer>
+        <!-- /. PAGE WRAPPER  -->
     </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="[[appUrl]]libs/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="[[appUrl]]libs/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="[[appUrl]]libs/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="[[appUrl]]libs/morris/raphael-2.1.0.min.js"></script>
+    <script src="[[appUrl]]libs/morris/morris.js"></script>
+    <!-- Custom Js -->
+    <script src="[[appUrl]]libs/custom-scripts.js"></script>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="[[appUrl]]js/jquery-1.11.2.min.js"><\/script>')</script>
-    <script src="js/bootstrap.min.js"></script>
-    </body>
+
+</body>
+
 </html>
