@@ -4,7 +4,8 @@
     var app = angular.module('bubbleEnglish', [
         'ngRoute',
         'bubbleEnglish.controllers',
-        'bubbleEnglish.directives'
+        'bubbleEnglish.directives',
+        'bubbleEnglish.services'
     ]);
 
     app.config(['$routeProvider', function($routeProvider){
