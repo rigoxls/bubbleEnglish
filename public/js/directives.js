@@ -1,6 +1,13 @@
 (function(w){
     angular.module('bubbleEnglish.directives', [])
 
+    .directive('infoMessage', function(){
+        return {
+            restrict: 'E',
+            templateUrl: '../views/partials/infoMessage.html'
+        }
+    })
+
     .directive('inputFile', function(){
         return {
             restrict: 'E',
