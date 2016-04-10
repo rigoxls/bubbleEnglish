@@ -17,7 +17,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
 
-<body>
+<body ng-app="bubbleEnglish">
     <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
@@ -78,7 +78,7 @@
         </nav>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
-            <div id="page-inner">
+            <div id="page-inner" ng-view>
 
                 {% block content %} {% endblock %}
 
@@ -89,6 +89,17 @@
     </div>
     <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
+
+
+    <!-- angular scripts -->
+    <script src="[[appUrl]]libs/angular.min.js"></script>
+    <script src="[[appUrl]]libs/angular-route.min.js"></script>
+
+    <script src="[[appUrl]]js/main.js"></script>
+    <script src="[[appUrl]]js/controllers/upsertBookController.js"></script>
+    <script src="[[appUrl]]js/directives.js"></script>
+
+
     <!-- jQuery Js -->
     <script src="[[appUrl]]libs/jquery-1.10.2.js"></script>
     <!-- Bootstrap Js -->

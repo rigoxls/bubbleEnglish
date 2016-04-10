@@ -1,0 +1,58 @@
+ <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Add a Book <small> to keep learning new vocabulary</small>
+            </h1>
+        </div>
+    </div>
+     <!-- /. ROW  -->
+  <div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Basic Form Elements
+            </div>
+            <form name="bookForm" ng-submit="submitForm(bookForm.$valid)" no validate>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form role="form" class="ng-pristine ng-valid">
+                                <div class="form-group">
+                                    <label>Book Name</label>
+                                    <input
+                                        ng-model="book.name"
+                                        class="form-control"
+                                        placeholder="Set book's name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <input-file file="file" image="image"></input-file>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Short Description</label>
+                                    <textarea
+                                        ng-model="article.description"
+                                        class="form-control" rows="3"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-default">Save Book</button>
+                                <button type="reset" class="btn btn-default">Reset</button>
+                            </form>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                        <div class="col-lg-6">
+                         <!-- some text in here -->
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                </div>
+            </form>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>

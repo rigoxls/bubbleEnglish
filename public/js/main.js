@@ -2,7 +2,9 @@
     'use strict';
 
     var app = angular.module('bubbleEnglish', [
-        'ngRoute'
+        'ngRoute',
+        'bubbleEnglish.controllers',
+        'bubbleEnglish.directives'
     ]);
 
     app.config(['$routeProvider', function($routeProvider){
@@ -12,8 +14,8 @@
             redirectTo : '/home/'
         })
 
-        .when('/createBooks/', {
-            templateUrl : '../views/upsert-book,html',
+        .when('/addBooks/', {
+            templateUrl : '../views/upsert-book.html',
             controller : 'upsertBookController'
         })
 
@@ -21,4 +23,8 @@
             redirectTo : '/home/'
         })
     }])
-})
+
+    app.controllers = angular.module('bubbleEnglish.controllers', []);
+    w.bubbleEnglish = app;
+
+})(window);
