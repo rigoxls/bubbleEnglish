@@ -18,7 +18,7 @@ var Routes = function(app){
     app.expressServer.get('/dashboard', function(req, res, next){
         //we need to be sure user is logged to see this pages that are managed with angularjs
         //if not user, redirect
-       // if(!req.user) res.redirect('/home');
+        if(!req.user) res.redirect('/home');
         controllers['dashboardController'].request('home', req , res, next);
     });
 

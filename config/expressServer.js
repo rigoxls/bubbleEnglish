@@ -15,7 +15,12 @@ var ExpressServer = function(config){
     this.expressServer = express();
     this.expressServer.locals.appUrl = conf.appUrl;
 
-    this.expressServer.use(bodyParser.urlencoded({ extended: true}));
+    //The bodyParser object exposes various factories to create middlewares.
+    //All middlewares will populate the req.body property with the parsed body,
+    //or an empty object ({}) if there was no body to parse (or an error was returned).
+    this.expressServer.use( bodyParser.json() );
+    //Returns middleware that only parses urlencoded bodies
+    this.expressServer.use( bodyParser.urlencoded({ extended: false}) );
 
     this.expressServer.use(session({
         secret: 'bubble-english-session-secret',

@@ -45,6 +45,7 @@ Dashboard.prototype.addBook = function(req, res, next)
     //we need to know how is adding a new book
     data.user = req.user;
 
+
     self.dashboardService['addBook'](data, function(resData)
     {
         if(resData)
