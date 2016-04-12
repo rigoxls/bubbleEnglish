@@ -42,12 +42,15 @@ Dashboard.prototype.addBook = function(req, res, next)
         return false;
     }
 
+    var data = req.body;
+
     //move file to book upload image folder
     if(req.body.fileName){
-        fs.rename(req.file.path, conf.booksImageFolder + req.body.fileName, function(){});
+        var imagePath = conf.booksImageFolder + req.body.fileName;
+        fs.rename(req.file.path, imagePath, function(){});
+        data.image = imagePath;
     }
 
-    var data = req.body;
     //we need to know how is adding a new book
     data.user = req.user;
 

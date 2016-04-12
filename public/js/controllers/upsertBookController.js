@@ -7,6 +7,8 @@
 
         $scope.submitForm = function(isValid)
         {
+            var self = this;
+
             if(isValid)
             {
                 var fileName = null;
@@ -40,9 +42,11 @@
                 })
                 .success(function(data){
                     messageFactory.showMessage(data.textResponse, 1);
+                    self.cleanForm();
                 })
                 .error(function (data, status) {
                     messageFactory.showMessage('error updating profile', 2);
+                    self.cleanForm();
                 })
             }
         };
@@ -50,6 +54,7 @@
         $scope.cleanForm = function()
         {
             $scope.book.name = $scope.book.description = '';
+            angular.element( document.querySelector("input[type='file']")).val(null);
         }
 
     }]);

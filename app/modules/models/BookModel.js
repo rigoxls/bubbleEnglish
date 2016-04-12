@@ -11,7 +11,8 @@ BookModel.prototype.insert = function(data, callback)
     var predefinedData = {
         user_id     : data.user_id,
         name        : data.name,
-        description : data.description
+        description : data.description,
+        image       : data.image
     };
 
     var bookObject = new modelBook(predefinedData);
