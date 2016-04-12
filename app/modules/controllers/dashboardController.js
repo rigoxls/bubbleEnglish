@@ -1,4 +1,6 @@
-var dashboardService = require('../services/dashboardService');
+var fs = require('fs'),
+    conf = require('../../../config/conf.json'),
+    dashboardService = require('../services/dashboardService');
 
 var Dashboard = function()
 {
@@ -40,8 +42,10 @@ Dashboard.prototype.addBook = function(req, res, next)
         return false;
     }
 
-    console.info(req.body);
-    console.info(req.file);
+    //move file to book upload image folder
+    if(req.body.fileName){
+        fs.rename(req.file.path, conf.booksImageFolder + req.body.fileName, function(){});
+    }
 
     var data = req.body;
     //we need to know how is adding a new book

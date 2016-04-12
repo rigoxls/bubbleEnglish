@@ -11,8 +11,9 @@
             {
                 var fileName = null;
 
+                //we need to rename the image to avoid override it if user upload another image with same name
                 if($scope.file){
-                    fileName = $scope.file.name.replace(/[^a-zA-Z0-9\.]+/g, '-').toLowerCase();
+                    fileName = parseInt(Math.random() * 100) + $scope.file.name.replace(/[^a-zA-Z0-9\.]+/g, '-').toLowerCase();
                 }
 
                 $http({
