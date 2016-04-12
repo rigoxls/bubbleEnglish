@@ -1,7 +1,8 @@
 (function(){
     angular.module('bubbleEnglish.services', [])
 
-        .factory('messageFactory', ['$timeout', '$rootScope', '$window', function($timeout, $rootScope, $window){
+        .factory('messageFactory', ['$timeout', '$rootScope', '$window', function($timeout, $rootScope, $window)
+        {
             var factory = {};
             $rootScope.alertMessage = null;
             $rootScope.alertShow = false;

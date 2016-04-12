@@ -1,6 +1,8 @@
 var controllersManager = require('./app/modules/controllers/controllersManager'),
     conf = require('./config/conf'),
-    passport = require('passport');
+    passport = require('passport'),
+    multer  = require('multer'),
+    upload = multer({ dest: conf.uploadFolder });
 
 
 var Routes = function(app){
@@ -18,11 +20,11 @@ var Routes = function(app){
     app.expressServer.get('/dashboard', function(req, res, next){
         //we need to be sure user is logged to see this pages that are managed with angularjs
         //if not user, redirect
-        if(!req.user) res.redirect('/home');
+        //if(!req.user) res.redirect('/home');
         controllers['dashboardController'].request('home', req , res, next);
     });
 
-    app.expressServer.post('/dashboard/addBook', function(req, res, next){
+    app.expressServer.post('/dashboard/addBook', upload.single('file'), function(req, res, next){
         controllers['dashboardController'].request('addBook', req , res, next);
     });
 

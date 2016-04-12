@@ -9,7 +9,8 @@ var env = process.env.NODE_ENV || 'production',
 
     require('./passportConfig')();
 
-var ExpressServer = function(config){
+var ExpressServer = function(config)
+{
     config = config || {};
 
     this.expressServer = express();

@@ -9,23 +9,46 @@
         {
             if(isValid)
             {
-                var bookParameters = {
-                    name : $scope.book.name,
-                    description : $scope.book.description
-                };
+                var fileName = null;
 
-                $http.post("/dashboard/addBook", bookParameters)
-                    .success(function (data, status, header, config){
-                        messageFactory.showMessage(data.textResponse, 1);
-                        console.info('all good');
-                    }).
-                    error(function(data, status, headers, config){
-                        messageFactory.showMessage(data.textResponse, 1);
-                        //a message of error in here
-                        console.info('There was an error procesing your request AJS');
-                    });
+                if($scope.file){
+                    fileName = $scope.file.name.replace(/[^a-zA-Z0-9\.]+/g, '-').toLowerCase();
+                }
+
+                $http({
+                    method: 'POST',
+                    url: '/dashboard/addBook/',
+                    headers: {
+                        'Content-Type' : undefined
+                    },
+                    data:{
+                        name : $scope.book.name,
+                        description : $scope.book.description,
+                        file: $scope.file,
+                        fileName: fileName
+                    },
+                    //emulate a post/ multipart data
+                    transformRequest: function (data, headersGetter) {
+                        var formData = new FormData();
+                        angular.forEach(data, function (value, key) {
+                            formData.append(key, value);
+                        });
+
+                        return formData;
+                    }
+                })
+                .success(function(data){
+                    messageFactory.showMessage(data.textResponse, 1);
+                })
+                .error(function (data, status) {
+                    messageFactory.showMessage('error updating profile', 2);
+                })
             }
+        };
 
+        $scope.cleanForm = function()
+        {
+            $scope.book.name = $scope.book.description = '';
         }
 
     }]);

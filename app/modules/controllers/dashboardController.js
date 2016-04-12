@@ -35,11 +35,13 @@ Dashboard.prototype.addBook = function(req, res, next)
 {
     var self = this;
 
-    if(!req.body)
-    {
+    if(!req.body){
         console.info('body is empty');
         return false;
     }
+
+    console.info(req.body);
+    console.info(req.file);
 
     var data = req.body;
     //we need to know how is adding a new book
@@ -48,12 +50,10 @@ Dashboard.prototype.addBook = function(req, res, next)
 
     self.dashboardService['addBook'](data, function(resData)
     {
-        if(resData)
-        {
+        if(resData){
             self.JSONresponse(res, resData.textResponse, resData.data, data.user);
         }
-        else
-        {
+        else{
             console.info('something went wrong with addBook request');
         }
     })
