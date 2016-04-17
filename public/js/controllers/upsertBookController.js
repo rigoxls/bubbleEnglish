@@ -54,7 +54,9 @@
         $scope.cleanForm = function()
         {
             $scope.book.name = $scope.book.description = '';
-            angular.element( document.querySelector("input[type='file']")).val(null);
+            var inputFile = angular.element( document.querySelector("input[type='file']"));
+            inputFile.val(null);
+            inputFile.triggerHandler('change');
         }
 
     }]);

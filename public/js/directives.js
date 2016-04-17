@@ -31,6 +31,12 @@
                     var file = event.target.files[0];
                     scope.file = file ? file : undefined;
 
+                    //if file is empty, clean it on dom
+                    if(scope.file == undefined){
+                        scope.image = null;
+                        return false;
+                    }
+
                     reader.readAsDataURL(file);
                     scope.$apply();
                 });
