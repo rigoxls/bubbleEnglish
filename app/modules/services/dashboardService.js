@@ -32,4 +32,30 @@ DashboardService.prototype.listBooks = function(data, callback)
     })
 }
 
+DashboardService.prototype.getBook = function(data, callback)
+{
+    var self = this;
+    self.bookModel.getById(data, function(data){
+        if(data){
+            var textResponse = 'Book gotten';
+            callback({data: data, textResponse: textResponse});
+        }else{
+            callback(null);
+        }
+    })
+}
+
+DashboardService.prototype.updateBook = function(data, callback)
+{
+    var self = this;
+    self.bookModel.update(data, function(data){
+        if(data){
+            var textResponse = 'book updated';
+            callback({data: data, textResponse: textResponse});
+        }else{
+            callback(null);
+        }
+    })
+}
+
 module.exports = DashboardService;

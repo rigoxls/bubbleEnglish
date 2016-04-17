@@ -20,6 +20,11 @@
             controller : 'upsertBookController'
         })
 
+        .when('/updateBook/:bookId', {
+            templateUrl : '../views/upsert-book.html',
+            controller : 'upsertBookController'
+        })
+
         .when('/listBooks/', {
             templateUrl : '../views/list-books.html',
             controller : 'listBooksController'

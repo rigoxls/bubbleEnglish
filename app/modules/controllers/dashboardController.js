@@ -45,7 +45,7 @@ Dashboard.prototype.addBook = function(req, res, next)
     var data = req.body;
 
     //move file to book upload image folder
-    if(req.body.fileName){
+    if(req.body.fileName && req.file){
         var imagePath = conf.booksImageFolder + req.body.fileName;
         fs.rename(req.file.path, imagePath, function(){});
         data.image = imagePath.replace('./public','');
@@ -62,6 +62,39 @@ Dashboard.prototype.addBook = function(req, res, next)
         }
         else{
             console.info('something went wrong with addBook request');
+        }
+    })
+};
+
+Dashboard.prototype.updateBook = function(req, res, next)
+{
+    var self = this;
+
+    if(!req.body){
+        console.info('body is empty');
+        return false;
+    }
+
+    var data = req.body;
+
+    //move file to book upload image folder
+    if(req.body.fileName && req.file){
+        var imagePath = conf.booksImageFolder + req.body.fileName;
+        fs.rename(req.file.path, imagePath, function(){});
+        data.image = imagePath.replace('./public','');
+    }
+
+    //we need to know how is adding a new book
+    data.user = req.user;
+
+
+    self.dashboardService['updateBook'](data, function(resData)
+    {
+        if(resData){
+            self.JSONresponse(res, resData.textResponse, resData.data, data.user);
+        }
+        else{
+            console.info('something went wrong with updateBook request');
         }
     })
 };
@@ -86,6 +119,28 @@ Dashboard.prototype.listBooks = function(req, res, next)
         }
         else{
             console.info('something went wrong with listBooks request');
+        }
+    })
+};
+
+Dashboard.prototype.getBook = function(req, res, next)
+{
+    var self = this;
+
+    if(!req.query){
+        console.info('body is empty');
+        return false;
+    }
+
+    var data = req.query;
+
+    self.dashboardService['getBook'](data, function(resData)
+    {
+        if(resData){
+            self.JSONresponse(res, resData.textResponse, resData.data, data.user);
+        }
+        else{
+            console.info('something went wrong getting book per id');
         }
     })
 }

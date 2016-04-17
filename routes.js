@@ -29,9 +29,19 @@ var Routes = function(app){
         controllers['dashboardController'].request('addBook', req , res, next);
     });
 
+    app.expressServer.post('/dashboard/updateBook', upload.single('file'), function(req, res, next){
+        if(!req.user) res.redirect('/home');
+        controllers['dashboardController'].request('updateBook', req , res, next);
+    });
+
     app.expressServer.get('/dashboard/listBooks', function(req, res, next){
         if(!req.user) res.redirect('/home');
         controllers['dashboardController'].request('listBooks', req , res, next);
+    });
+
+    app.expressServer.get('/dashboard/getBook', function(req, res, next){
+        if(!req.user) res.redirect('/home');
+        controllers['dashboardController'].request('getBook', req , res, next);
     });
 
     app.expressServer.get('/home', function(req, res, next){

@@ -1,9 +1,29 @@
 (function(w){
     'use-strict';
-    w.bubbleEnglish.controllers.controller('upsertBookController', ['$scope', '$http', 'messageFactory', function($scope, $http, messageFactory)
+    w.bubbleEnglish.controllers.controller('upsertBookController', ['$scope', '$http', '$routeParams', 'messageFactory', function($scope, $http, $routeParams, messageFactory)
     {
         //if book object doesn't exist , we create it.
         $scope.book = $scope.book || {};
+        $scope.bookId = null;
+
+        $scope.$on('$viewContentLoaded', function()
+        {
+            var dataParams = {};
+            $scope.bookId = $routeParams.bookId;
+            dataParams.bookId = $scope.bookId;
+
+            if($scope.bookId){
+                $http.get('/dashboard/getBook/', {params : dataParams})
+                    .success(function(data, status, headers, config){
+                        $scope.book = data.data;
+                    })
+                    .error(function(data, status, headers, config){
+                        console.info('Something went wrong getting book');
+                    });
+            }
+
+        });
+
 
         $scope.submitForm = function(isValid)
         {
@@ -18,13 +38,16 @@
                     fileName = parseInt(Math.random() * 100) + $scope.file.name.replace(/[^a-zA-Z0-9\.]+/g, '-').toLowerCase();
                 }
 
+                var endPoint = ($scope.bookId) ? '/dashboard/updateBook/' : '/dashboard/addBook/';
+
                 $http({
                     method: 'POST',
-                    url: '/dashboard/addBook/',
+                    url: endPoint,
                     headers: {
                         'Content-Type' : undefined
                     },
                     data:{
+                        bookId : $scope.bookId, //just in case of update
                         name : $scope.book.name,
                         description : $scope.book.description,
                         file: $scope.file,
@@ -42,11 +65,15 @@
                 })
                 .success(function(data){
                     messageFactory.showMessage(data.textResponse, 1);
-                    self.cleanForm();
+                    if(!$scope.bookId){
+                        self.cleanForm();
+                    }
                 })
                 .error(function (data, status) {
                     messageFactory.showMessage('error updating profile', 2);
-                    self.cleanForm();
+                    if(!$scope.bookId){
+                        self.cleanForm();
+                    }
                 })
             }
         };

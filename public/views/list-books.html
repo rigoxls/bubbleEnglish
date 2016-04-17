@@ -13,46 +13,37 @@
                 <info-message></info-message>
             </div>
 
-
-
-
-                        <div class="panel-heading">
-                             Here your list of books
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="books table">
-                                    <thead>
-                                        <tr>
-                                            <th>Book's name</th>
-                                            <th>Description</th>
-                                            <th>Image</th>
-                                            <th>Nro Vocabulary</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="odd gradeX" ng-repeat="book in bookList">
-                                            <td>{{book.name}}</td>
-                                            <td>{{book.description}}</td>
-                                            <td><img ng-src="{{book.image}}" width="80"></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
+                <div class="panel-heading">
+                     Here your list of books
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="books table">
+                            <thead>
+                                <tr>
+                                    <th>Book's name</th>
+                                    <th>Description</th>
+                                    <th>Image</th>
+                                    <th>Nro Vocabulary</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="odd gradeX" ng-repeat="book in bookList">
+                                    <td>{{book.name}}</td>
+                                    <td>{{book.description}}</td>
+                                    <td><img ng-src="{{book.image}}" width="80"></td>
+                                    <td class="center"></td>
+                                    <td class="center">
+                                        <a href="/dashboard/#/updateBook/{{book._id}}"><i class="fa fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-
-
-
-
-
-
-
+                </div>
+            </div>
 
             <!-- /.panel-body -->
         </div>
