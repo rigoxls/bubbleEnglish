@@ -48,7 +48,7 @@ Dashboard.prototype.addBook = function(req, res, next)
     if(req.body.fileName){
         var imagePath = conf.booksImageFolder + req.body.fileName;
         fs.rename(req.file.path, imagePath, function(){});
-        data.image = imagePath;
+        data.image = imagePath.replace('./public','');
     }
 
     //we need to know how is adding a new book
@@ -64,8 +64,30 @@ Dashboard.prototype.addBook = function(req, res, next)
             console.info('something went wrong with addBook request');
         }
     })
+};
 
+Dashboard.prototype.listBooks = function(req, res, next)
+{
+    var self = this;
 
+    if(!req.body){
+        console.info('body is empty');
+        return false;
+    }
+
+    var data = {};
+
+    data.user = req.user;
+
+    self.dashboardService['listBooks'](data, function(resData)
+    {
+        if(resData){
+            self.JSONresponse(res, resData.textResponse, resData.data, data.user);
+        }
+        else{
+            console.info('something went wrong with listBooks request');
+        }
+    })
 }
 
 module.exports = Dashboard;

@@ -20,12 +20,18 @@ var Routes = function(app){
     app.expressServer.get('/dashboard', function(req, res, next){
         //we need to be sure user is logged to see this pages that are managed with angularjs
         //if not user, redirect
-        //if(!req.user) res.redirect('/home');
+        if(!req.user) res.redirect('/home');
         controllers['dashboardController'].request('home', req , res, next);
     });
 
     app.expressServer.post('/dashboard/addBook', upload.single('file'), function(req, res, next){
+        if(!req.user) res.redirect('/home');
         controllers['dashboardController'].request('addBook', req , res, next);
+    });
+
+    app.expressServer.get('/dashboard/listBooks', function(req, res, next){
+        if(!req.user) res.redirect('/home');
+        controllers['dashboardController'].request('listBooks', req , res, next);
     });
 
     app.expressServer.get('/home', function(req, res, next){

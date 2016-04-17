@@ -21,6 +21,21 @@ BookModel.prototype.insert = function(data, callback)
         if(err) return console.error(err);
         callback(data);
     });
+};
+
+BookModel.prototype.listAll = function(data, callback)
+{
+    var query = {
+        user_id : data.user_id
+    };
+
+    this.model.find(
+        query,
+        function(err, data){
+            if(err) return console.error(err);
+            callback(data);
+        }
+    )
 }
 
 module.exports = BookModel;
